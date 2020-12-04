@@ -8,13 +8,13 @@ function! s:tasks.source()
   let max_name_len = max(map(copy(tasks), {_idx, task -> len(task.name)}))
 
   return map(tasks, {idx, task ->
-        \ s:left_pad(printf('[%s] ', task.scope), 10)
+        \ s:left_pad(printf('<%s> ', task.scope), 10)
         \ . s:right_pad(task.name, max_name_len + 10)
         \ . ' : ' . task.command})
 endfunction
 
 function! s:tasks.sink(line)
-  let name = substitute(a:line, '^\s*\[\w\+\]\s\+\(.\{-}\)\s\+:\s\+.\+$', '\1', '')
+  let name = substitute(a:line, '^\s*<\w\+>\s\+\(.\{-}\)\s\+:\s\+.\+$', '\1', '')
   if name != ''
     exec "AsyncTask ". name
   endif
