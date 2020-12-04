@@ -1,6 +1,6 @@
 syntax match ClapTask        /^\s*\[\w\+\]\s\+.\{-}\s\+:\s\+.\+$/ contains=ClapTaskScope
 syntax match ClapTaskScope   /^\s*\[\w\+\]\s\+/                   contained nextgroup=ClapTaskName
-syntax match ClapTaskName    /.\{-}\s\+/                          contained nextgroup=ClapTaskSep
+syntax match ClapTaskName    /.\{-}\s\+\ze:/                      contained nextgroup=ClapTaskSep
 syntax match ClapTaskSep     /:/                                  contained nextgroup=ClapTaskCommand skipwhite
 syntax match ClapTaskCommand /.\+$/                               contained
 
